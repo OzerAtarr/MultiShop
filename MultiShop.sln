@@ -58,7 +58,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiShop.Cargo.DtoLayer", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiShop.Cargo.WebApi", "Services\Cargo\MultiShop.Cargo.WebApi\MultiShop.Cargo.WebApi.csproj", "{EED00E4E-D517-4CC6-AAD8-D708C73CC6E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiShop.WebUI", "Frontends\MultiShop.WebUI\MultiShop.WebUI.csproj", "{4F893083-8AE7-4786-AE0A-B3C28345EEA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiShop.WebUI", "Frontends\MultiShop.WebUI\MultiShop.WebUI.csproj", "{4F893083-8AE7-4786-AE0A-B3C28345EEA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiShop.DtoLayer", "Frontends\MultiShop.DtoLayer\MultiShop.DtoLayer.csproj", "{7AC4A569-5DC6-4F9D-B341-4958DDC3436E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,6 +124,10 @@ Global
 		{4F893083-8AE7-4786-AE0A-B3C28345EEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F893083-8AE7-4786-AE0A-B3C28345EEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F893083-8AE7-4786-AE0A-B3C28345EEA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC4A569-5DC6-4F9D-B341-4958DDC3436E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC4A569-5DC6-4F9D-B341-4958DDC3436E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC4A569-5DC6-4F9D-B341-4958DDC3436E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC4A569-5DC6-4F9D-B341-4958DDC3436E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +155,7 @@ Global
 		{761DCE35-B973-4079-B0F1-14FFDD9C8E74} = {95769785-2E75-4196-91D6-0E96AA31E002}
 		{EED00E4E-D517-4CC6-AAD8-D708C73CC6E4} = {95769785-2E75-4196-91D6-0E96AA31E002}
 		{4F893083-8AE7-4786-AE0A-B3C28345EEA9} = {211AE595-DB5F-4B54-B430-0E5ABDD8BAFA}
+		{7AC4A569-5DC6-4F9D-B341-4958DDC3436E} = {211AE595-DB5F-4B54-B430-0E5ABDD8BAFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EF30BE8-50E6-4644-845A-82C6C66A3800}
