@@ -2,7 +2,7 @@
 
 namespace MultiShop.WebUI.Controllers
 {
-    public class DefalutController : Controller
+    public class DefaultController : Controller
     {
         public IActionResult Index()
         {

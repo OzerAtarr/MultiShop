@@ -52,11 +52,6 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("CreateCategory")]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            ViewBag.v1 = "Ana Sayfa";
-            ViewBag.v2 = "Kategoriler";
-            ViewBag.v3 = "Yeni Kategori Girişi";
-            ViewBag.v0 = "Kategori İşlemleri";
-
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
