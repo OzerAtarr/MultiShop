@@ -26,3 +26,8 @@ http://localhost:7173/api/CargoDetails
 ---------------------------------------------------------------------
 Basket			==>	7174		
 http://localhost:7173/api/Baskets
+
+
+---------------------------------------------------------------------
+Comment			==>	7175	
+http://localhost:7175/api/UserComments
