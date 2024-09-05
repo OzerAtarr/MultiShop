@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.DtoLayer.CommentDtos
 {
-    public class CreateUserCommentDto
+    public class CreateCommentDto
     {
         public string NameSurname { get; set; }
         public string? ImageUrl { get; set; }

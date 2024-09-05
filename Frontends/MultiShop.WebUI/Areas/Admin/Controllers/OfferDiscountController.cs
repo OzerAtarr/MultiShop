@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CatalogDtos.OfferDiscountDtos;
+using MultiShop.WebUI.Services.CatalogServices.OfferDiscountServices;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -11,10 +12,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
     [Route("Admin/OfferDiscount")]
     public class OfferDiscountController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public OfferDiscountController(IHttpClientFactory httpClientFactory)
+        private readonly IOfferDiscountService _offerDiscountService;
+        public OfferDiscountController(IOfferDiscountService offerDiscountService)
         {
-            _httpClientFactory = httpClientFactory;
+            _offerDiscountService = offerDiscountService;
         }
 
         [Route("Index")]
@@ -25,15 +26,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v3 = "İndirim Teklif Listesi";
             ViewBag.v0 = "İndirim Teklif İşlemleri";
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:7170/api/OfferDiscounts");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultOfferDiscountDto>>(jsonData);
-                return View(values);
-            }
-            return View();
+            var values = await _offerDiscountService.GetAllOfferDiscountAsync();
+            return View(values);
         }
 
         [HttpGet]
@@ -52,28 +46,15 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [Route("CreateOfferDiscount")]
         public async Task<IActionResult> CreateOfferDiscount(CreateOfferDiscountDto createOfferDiscountDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createOfferDiscountDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:7170/api/OfferDiscounts", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
-
-            }
-            return View();
+            await _offerDiscountService.CreateOfferDiscountAsync(createOfferDiscountDto);
+            return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
         }
 
         [Route("DeleteOfferDiscount/{id}")]
         public async Task<IActionResult> DeleteOfferDiscount(string id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("http://localhost:7170/api/OfferDiscounts/" + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
-            }
-            return View();
+            await _offerDiscountService.DeleteOfferDiscountAsync(id);
+            return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
         }
 
         [Route("UpdateOfferDiscount/{id}")]
@@ -85,30 +66,16 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v3 = "İndirim Teklifi Güncelleme";
             ViewBag.v0 = "İndirim Teklif İşlemleri";
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:7170/api/OfferDiscounts/" + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateOfferDiscountDto>(jsonData);
-                return View(value);
-            }
-            return View();
+            var value = await _offerDiscountService.GetByIdOfferDiscountAsync(id);
+            return View(value);
         }
 
         [Route("UpdateOfferDiscount/{id}")]
         [HttpPost]
         public async Task<IActionResult> UpdateOfferDiscount(UpdateOfferDiscountDto updateOfferDiscountDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateOfferDiscountDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("http://localhost:7170/api/OfferDiscounts/", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
-            }
-            return View();
+            await _offerDiscountService.UpdateOfferDiscountAsync(updateOfferDiscountDto);
+            return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
         }
     }
 }

@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CommentDtos;
+using MultiShop.WebUI.Services.CommentServices;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
-    [AllowAnonymous]
     [Route("Admin/Comment")]
     public class CommentController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public CommentController(IHttpClientFactory httpClientFactory)
+        private readonly ICommentService _commentService;
+        public CommentController(ICommentService commentService)
         {
-            _httpClientFactory = httpClientFactory;
+            _commentService = commentService;
         }
 
         [Route("Index")]
@@ -25,15 +26,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v3 = "Yorum Listesi";
             ViewBag.v0 = "Yorum İşlemleri";
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:7175/api/Comments");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultUserCommentDto>>(jsonData);
-                return View(values);
-            }
-            return View();
+            var values = await _commentService.GetAllCommentAsync();
+            return View(values);
         }
 
         [HttpGet]
@@ -50,29 +44,29 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("CreateComment")]
-        public async Task<IActionResult> CreateComment(CreateUserCommentDto createCommentDto)
+        public async Task<IActionResult> CreateComment(CreateCommentDto createCommentDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createCommentDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:7175/api/Comments", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "Comment", new { area = "Admin" });
+            //var client = _httpClientFactory.CreateClient();
+            //var jsonData = JsonConvert.SerializeObject(createCommentDto);
+            //StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            //var responseMessage = await client.PostAsync("http://localhost:7175/api/Comments", stringContent);
+            //if (responseMessage.IsSuccessStatusCode)
+            //{
+            //    return RedirectToAction("Index", "Comment", new { area = "Admin" });
 
-            }
+            //}
             return View();
         }
 
         [Route("DeleteComment/{id}")]
         public async Task<IActionResult> DeleteComment(string id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("http://localhost:7175/api/Comments/" + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "Comment", new { area = "Admin" });
-            }
+            //var client = _httpClientFactory.CreateClient();
+            //var responseMessage = await client.DeleteAsync("http://localhost:7175/api/Comments/" + id);
+            //if (responseMessage.IsSuccessStatusCode)
+            //{
+            //    return RedirectToAction("Index", "Comment", new { area = "Admin" });
+            //}
             return View();
         }
 
@@ -85,30 +79,30 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v3 = "Kategori Güncelleme";
             ViewBag.v0 = "Kategori İşlemleri";
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:7175/api/Comments/" + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateUserCommentDto>(jsonData);
-                return View(value);
-            }
+            //var client = _httpClientFactory.CreateClient();
+            //var responseMessage = await client.GetAsync("http://localhost:7175/api/Comments/" + id);
+            //if (responseMessage.IsSuccessStatusCode)
+            //{
+            //    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            //    var value = JsonConvert.DeserializeObject<UpdateCommentDto>(jsonData);
+            //    return View(value);
+            //}
             return View();
         }
 
         [Route("UpdateComment/{id}")]
         [HttpPost]
-        public async Task<IActionResult> UpdateComment(UpdateUserCommentDto updateCommentDto)
+        public async Task<IActionResult> UpdateComment(UpdateCommentDto updateCommentDto)
         {
-            updateCommentDto.Status = true;
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateCommentDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("http://localhost:7175/api/Comments/", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "Comment", new { area = "Admin" });
-            }
+            //updateCommentDto.Status = true;
+            //var client = _httpClientFactory.CreateClient();
+            //var jsonData = JsonConvert.SerializeObject(updateCommentDto);
+            //StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            //var responseMessage = await client.PutAsync("http://localhost:7175/api/Comments/", stringContent);
+            //if (responseMessage.IsSuccessStatusCode)
+            //{
+            //    return RedirectToAction("Index", "Comment", new { area = "Admin" });
+            //}
             return View();
         }
     }

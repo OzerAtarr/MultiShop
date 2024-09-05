@@ -38,7 +38,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteBrand(string id)
         {
             await _brandService.DeleteBrandAsync(id);

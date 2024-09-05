@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.DtoLayer.CommentDtos
 {
-    public class UpdateUserCommentDto
+    public class UpdateCommentDto
     {
         public int UserCommentId { get; set; }
         public string NameSurname { get; set; }

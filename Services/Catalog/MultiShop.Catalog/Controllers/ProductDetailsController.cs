@@ -12,9 +12,9 @@ namespace MultiShop.Catalog.Controllers
     public class ProductDetailsController : ControllerBase
     {
         private readonly IProductDetailService _productDetailService;
-        public ProductDetailsController(IProductDetailService productDetailService)
+        public ProductDetailsController(IProductDetailService ProductDetailService)
         {
-            _productDetailService = productDetailService;
+            _productDetailService = ProductDetailService;
         }
 
         [HttpGet]
@@ -27,36 +27,36 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductDetailById(string id)
         {
-            var value = await _productDetailService.GetByIdProductDetailAsync(id);
-            return Ok(value);
+            var values = await _productDetailService.GetByIdProductDetailAsync(id);
+            return Ok(values);
         }
-        [HttpGet("ProductDetailsByProductId")]
-        public async Task<IActionResult> ProductDetailsByProductId(string id)
+
+        [HttpGet("GetProductDetailByProductId/{id}")]
+        public async Task<IActionResult> GetProductDetailByProductId(string id)
         {
-            var value = await _productDetailService.GetByProductIdProductDetailAsync(id);
-            return Ok(value);
+            var values = await _productDetailService.GetByProductIdProductDetailAsync(id);
+            return Ok(values);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateProductDetail(CreateProductDetailDto createProductDetailDto)
         {
             await _productDetailService.CreateProductDetailAsync(createProductDetailDto);
-            return Ok("Ürün Detayı başarıyla eklendi.");
+            return Ok("Ürün detayı başarıyla eklendi");
         }
 
-
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteProductDetail(string id)
         {
             await _productDetailService.DeleteProductDetailAsync(id);
-            return Ok("Ürün Detayı başarıyla silindi.");
+            return Ok("Ürün detayı başarıyla silindi");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateProductDetail(UpdateProductDetailDto updateProductDetailDto)
         {
             await _productDetailService.UpdateProductDetailAsync(updateProductDetailDto);
-            return Ok("Ürün Detayı başarı ile güncellendi.");
+            return Ok("Ürün detayı başarıyla güncellendi");
         }
     }
 }

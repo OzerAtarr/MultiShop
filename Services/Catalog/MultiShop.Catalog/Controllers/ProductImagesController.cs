@@ -31,7 +31,7 @@ namespace MultiShop.Catalog.Controllers
             return Ok(value);
         }
 
-        [HttpGet("ProductImagesByProductId")]
+        [HttpGet("ProductImagesByProductId/{id}")]
         public async Task<IActionResult> ProductImagesByProductId(string id)
         {
             var value = await _productImageService.GetByProductIdProductImageAsync(id);
@@ -46,7 +46,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteProductImage(string id)
         {
             await _productImageService.DeleteProductImageAsync(id);

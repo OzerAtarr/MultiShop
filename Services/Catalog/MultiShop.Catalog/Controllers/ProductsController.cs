@@ -30,7 +30,7 @@ namespace MultiShop.Catalog.Controllers
             return Ok(values);
         }
 
-        [HttpGet("ProductListWithCategoryByCategoryId")]
+        [HttpGet("ProductListWithCategoryByCategoryId/{id}")]
         public async Task<IActionResult> ProductListWithCategoryByCategoryId(string id)
         {
             var values = await _productService.ProductListWithCategoryByCategoryIdAsync(id);
@@ -52,7 +52,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteProduct(string id)
         {
             await _productService.DeleteProductAsync(id);

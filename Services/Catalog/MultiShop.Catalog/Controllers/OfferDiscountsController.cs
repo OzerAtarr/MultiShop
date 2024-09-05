@@ -12,9 +12,9 @@ namespace MultiShop.Catalog.Controllers
     public class OfferDiscountsController : ControllerBase
     {
         private readonly IOfferDiscountService _offerDiscountService;
-        public OfferDiscountsController(IOfferDiscountService offerDiscountService)
+        public OfferDiscountsController(IOfferDiscountService OfferDiscountService)
         {
-            _offerDiscountService = offerDiscountService;
+            _offerDiscountService = OfferDiscountService;
         }
 
         [HttpGet]
@@ -27,30 +27,29 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOfferDiscountById(string id)
         {
-            var value = await _offerDiscountService.GetByIdOfferDiscountAsync(id);
-            return Ok(value);
+            var values = await _offerDiscountService.GetByIdOfferDiscountAsync(id);
+            return Ok(values);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateOfferDiscount(CreateOfferDiscountDto createOfferDiscountDto)
         {
             await _offerDiscountService.CreateOfferDiscountAsync(createOfferDiscountDto);
-            return Ok("Özel Teklif başarıyla eklendi.");
+            return Ok("Özel Teklif başarıyla eklendi");
         }
 
-
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteOfferDiscount(string id)
         {
             await _offerDiscountService.DeleteOfferDiscountAsync(id);
-            return Ok("Özel Teklif başarıyla silindi.");
+            return Ok("Özel Teklif başarıyla silindi");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateOfferDiscount(UpdateOfferDiscountDto updateOfferDiscountDto)
         {
             await _offerDiscountService.UpdateOfferDiscountAsync(updateOfferDiscountDto);
-            return Ok("Özel Teklif başarı ile güncellendi.");
+            return Ok("Özel Teklif başarıyla güncellendi");
         }
     }
 }

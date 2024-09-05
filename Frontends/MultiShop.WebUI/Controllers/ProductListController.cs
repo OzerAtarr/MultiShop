@@ -16,11 +16,17 @@ namespace MultiShop.WebUI.Controllers
         }
         public IActionResult Index(string id)
         {
+            ViewBag.directory1 = "Anasayfa";
+            ViewBag.directory2 = "Ürünler";
+            ViewBag.directory3 = "Ürün Listesi";
             ViewBag.i = id;
             return View();
         }
         public IActionResult ProductDetail(string id)
         {
+            ViewBag.directory1 = "Anasayfa";
+            ViewBag.directory2 = "Ürünler";
+            ViewBag.directory3 = "Ürün Detayları";
             ViewBag.x = id;
             return View();
         }
@@ -32,7 +38,7 @@ namespace MultiShop.WebUI.Controllers
         }
 
         [HttpPost]  
-        public async Task<IActionResult> AddComment(CreateUserCommentDto createUserCommentDto)
+        public async Task<IActionResult> AddComment(CreateCommentDto createUserCommentDto)
         {
             createUserCommentDto.ImageUrl = "test";
             createUserCommentDto.Rating = 1;

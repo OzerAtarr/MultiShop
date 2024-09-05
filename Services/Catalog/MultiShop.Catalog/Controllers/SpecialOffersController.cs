@@ -39,7 +39,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteSpecialOffer(string id)
         {
             await _specialOfferService.DeleteSpecialOfferAsync(id);

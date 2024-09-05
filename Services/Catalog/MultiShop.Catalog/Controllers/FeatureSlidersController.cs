@@ -39,7 +39,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteFeatureSlider(string id)
         {
             await _featureSliderService.DeleteFeatureSliderAsync(id);

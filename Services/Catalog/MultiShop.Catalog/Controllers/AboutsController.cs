@@ -38,7 +38,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteAbout(string id)
         {
             await _aboutService.DeleteAboutAsync(id);
