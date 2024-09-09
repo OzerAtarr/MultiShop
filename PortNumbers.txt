@@ -42,5 +42,5 @@ http://localhost:7175/api/UserComments
 
 
 ---------------------------------------------------------------------
-Payment			==>	7177	
+Image			==>	7177	
 http://localhost:7175/api/UserComments

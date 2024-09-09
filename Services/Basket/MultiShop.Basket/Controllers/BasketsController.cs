@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Basket.Dtos;
-using MultiShop.Basket.LginServices;
+using MultiShop.Basket.LoginServices;
 using MultiShop.Basket.Services;
 
 namespace MultiShop.Basket.Controllers

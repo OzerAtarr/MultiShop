@@ -1,4 +1,4 @@
-﻿namespace MultiShop.Basket.LginServices
+﻿namespace MultiShop.Basket.LoginServices
 {
     public class LoginService : ILoginService
     {
