@@ -1,0 +1,45 @@
+﻿@model List<ResultOrderingByUserIdDto>
+@{
+    ViewData["Title"] = "MyOrderList";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Geçmiş Siparişlerim</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Toplam Fiyat</th>
+                                <th>Sipariş Tarihi</th>
+                                <th>Sipariş Detayları</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach(var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.TotalPrice</td>
+                                    <td>@(((DateTime)item.OrderDate).ToString("dd-MMM-yyyy"))</td>
+                                    <td><a href="@item.OrderingId" class="btn btn-warning">Sipariş Detayları</a></td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
