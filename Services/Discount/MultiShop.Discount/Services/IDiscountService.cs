@@ -11,5 +11,6 @@ namespace MultiShop.Discount.Services
         Task CreateDiscountCoupon(CreateDiscountCouponDto createCouponDto);
         Task UpdateDiscountCoupon(UpdateDiscountCouponDto updateCouponDto);
         Task DeleteDiscountCoupon(int id);
+        Task<int> GetDiscountCouponCount();
     }
 }
