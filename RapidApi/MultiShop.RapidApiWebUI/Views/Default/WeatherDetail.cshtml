@@ -1,0 +1,29 @@
+﻿@model WeatherViewModel
+@{
+    Layout = null;
+}
+
+
+<div class="container">
+    <br />
+    <br />
+    <h3>Kayseri Hava Durumu : <strong>@Model.data.temp  &deg</strong></h3>
+</div>
+
+@Model.data.city
+<br /> @Model.data.current_weather 
+<br /> @Model.data.temp 
+<br /> @Model.data.expected_temp
+<br /> @Model.data.insight_heading
+<br /> @Model.data.insight_description
+<br /> @Model.data.wind
+<br /> @Model.data.humidity
+<br /> @Model.data.visibility
+<br /> @Model.data.uv_index
+<br /> @Model.data.aqi
+<br /> @Model.data.aqi_remark
+<br /> @Model.data.aqi_description
+<br /> @Model.data.last_update
+<br />
+<img src="@Model.data.bg_image" width="50px" height="50px" />
+

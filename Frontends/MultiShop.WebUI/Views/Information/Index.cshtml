@@ -1,0 +1,9 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+@* kelime kelime veya kalıp kalıp çevirmek gerek *@
+@* <h1>@localizer["Merhaba Bugün Hava Çok Sıcak"]</h1> *@
+<h1>@localizer["Merhaba"] @localizer["Bugün"] @localizer["Hava"] @localizer["Çok"] @localizer["Sıcak"]</h1>
+

@@ -1,0 +1,13 @@
+﻿@model ExchangeViewModel
+@{
+    Layout = null;
+}
+
+
+
+@Model.data.from_symbol
+<br />@Model.data.to_symbol
+<br />@Model.data.type
+<br />Dolar Alış : @Model.data.exchange_rate
+<br />Dolar Satış : @Model.data.previous_close
+<br />Tarih : @Model.data.last_update_utc
